@@ -1,0 +1,207 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/expressjs/keygrip"
+
+    >keygrip (v1.0.1)</a>
+</h1>
+<h4>Key signing and verification for rotated credentials</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.keygrip">module keygrip</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.keygrip.index">
+            function <span class="apidocSignatureSpan">keygrip.</span>index
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.keygrip.sign">
+            function <span class="apidocSignatureSpan">keygrip.</span>sign
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.keygrip.verify">
+            function <span class="apidocSignatureSpan">keygrip.</span>verify
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.keygrip" id="apidoc.module.keygrip">module keygrip</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.keygrip.index" id="apidoc.element.keygrip.index">
+        function <span class="apidocSignatureSpan">keygrip.</span>index
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">index = function () {
+  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Keygrip keeps a reference to this array to automatically reflect any changes. This reference is stored using a closure to prevent
+ external access.
+
+### keys.sign(data)
+
+This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without
+ padding, replacing `+` with `-` and `/` with `_`).
+
+### keys.<span class="apidocCodeKeywordSpan">index</span>(data, digest)
+
+This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which
+ point the current index is returned. If no key is matched, `-1` is returned.
+
+The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation
+, and enable better performance for subsequent challenges.
+
+### keys.verify(data, digest)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.keygrip.sign" id="apidoc.element.keygrip.sign">
+        function <span class="apidocSignatureSpan">keygrip.</span>sign
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sign = function () {
+  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+The keylist is an array of all valid keys for signing, in descending order of freshness; new keys should be `unshift`ed into the
+ array and old keys should be `pop`ped.
+
+The tradeoff here is that adding more keys to the keylist allows for more granular freshness for key validation, at the cost of
+a more expensive worst-case scenario for old or invalid hashes.
+
+Keygrip keeps a reference to this array to automatically reflect any changes. This reference is stored using a closure to prevent
+ external access.
+
+### keys.<span class="apidocCodeKeywordSpan">sign</span>(data)
+
+This creates a SHA1 HMAC based on the _first_ key in the keylist, and outputs it as a 27-byte url-safe base64 digest (base64 without
+ padding, replacing `+` with `-` and `/` with `_`).
+
+### keys.index(data, digest)
+
+This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which
+ point the current index is returned. If no key is matched, `-1` is returned.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.keygrip.verify" id="apidoc.element.keygrip.verify">
+        function <span class="apidocSignatureSpan">keygrip.</span>verify
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">verify = function () {
+  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+### keys.index(data, digest)
+
+This loops through all of the keys currently in the keylist until the digest of the current key matches the given digest, at which
+ point the current index is returned. If no key is matched, `-1` is returned.
+
+The idea is that if the index returned is greater than `0`, the data should be re-signed to prevent premature credential invalidation
+, and enable better performance for subsequent challenges.
+
+### keys.<span class="apidocCodeKeywordSpan">verify</span>(data, digest)
+
+This uses `index` to return `true` if the digest matches any existing keys, and `false` otherwise.
+
+## Example
+
+```javascript
+// ./test.js
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
