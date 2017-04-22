@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/expressjs/keygrip"
-
-    >keygrip (v1.0.1)</a>
+    <a href="https://github.com/expressjs/keygrip">keygrip (v1.0.1)</a>
 </h1>
 <h4>Key signing and verification for rotated credentials</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.keygrip">module keygrip</a><ol>
 
@@ -144,12 +137,12 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Keygrip(keys, algorithm, encoding) {
-  if (!algorithm) algorithm = &#x22;sha1&#x22;;
-  if (!encoding) encoding = &#x22;base64&#x22;;
+  if (!algorithm) algorithm = "sha1";
+  if (!encoding) encoding = "base64";
   if (!(this instanceof Keygrip)) return new Keygrip(keys, algorithm, encoding)
 
   if (!keys || !(0 in keys)) {
-    throw new Error(&#x22;Keys must be provided.&#x22;)
+    throw new Error("Keys must be provided.")
   }
 
   function sign(data, key) {
@@ -157,18 +150,18 @@
       .createHmac(algorithm, key)
       .update(data).digest(encoding)
       .replace(/\/|\+|=/g, function(x) {
-        return ({ &#x22;/&#x22;: &#x22;_&#x22;, &#x22;+&#x22;: &#x22;-&#x22;, &#x22;=&#x22;: &#x22;&#x22; })[x]
+        return ({ "/": "_", "+": "-", "=": "" })[x]
       })
   }
 
   this.sign = function(data){ return sign(data, keys[0]) }
 
   this.verify = function(data, digest) {
-    return this.index(data, digest) &#x3e; -1
+    return this.index(data, digest) &gt; -1
   }
 
   this.index = function(data, digest) {
-    for (var i = 0, l = keys.length; i &#x3c; l; i++) {
+    for (var i = 0, l = keys.length; i &lt; l; i++) {
       if (constantTimeCompare(digest, sign(data, keys[i]))) return i
     }
 
@@ -188,7 +181,7 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">index = function () {
-  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+  throw new Error("Usage: require('keygrip')(&lt;array-of-keys&gt;)")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -222,7 +215,7 @@ The idea is that if the index returned is greater than `0`, the data should be r
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sign = function () {
-  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+  throw new Error("Usage: require('keygrip')(&lt;array-of-keys&gt;)")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -257,7 +250,7 @@ This loops through all of the keys currently in the keylist until the digest of 
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">verify = function () {
-  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+  throw new Error("Usage: require('keygrip')(&lt;array-of-keys&gt;)")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -295,7 +288,7 @@ This uses `index` to return `true` if the digest matches any existing keys, and 
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">index = function () {
-  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+  throw new Error("Usage: require('keygrip')(&lt;array-of-keys&gt;)")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -329,7 +322,7 @@ The idea is that if the index returned is greater than `0`, the data should be r
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sign = function () {
-  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+  throw new Error("Usage: require('keygrip')(&lt;array-of-keys&gt;)")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -364,7 +357,7 @@ This loops through all of the keys currently in the keylist until the digest of 
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">verify = function () {
-  throw new Error(&#x22;Usage: require(&#x27;keygrip&#x27;)(&#x3c;array-of-keys&#x3e;)&#x22;)
+  throw new Error("Usage: require('keygrip')(&lt;array-of-keys&gt;)")
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
@@ -396,3 +389,4 @@ This uses `index` to return `true` if the digest matches any existing keys, and 
     ]
 </div>
 </div>
+</body></html>
